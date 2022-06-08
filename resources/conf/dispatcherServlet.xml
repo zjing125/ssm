@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--扫描器  扫描注解-->
+    <context:component-scan base-package="com.jokereven.controller" />
+
+    <!-- 声明 springmvc框架中的视图解析器， 帮助开发人员设置视图文件的路径-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+
+
+    <!-- 解决 mvc:resources和@RequestMapping的冲突，解决静态资源访问问题 -->
+    <!-- 使用@ResponseBody注解时，需要使用此注解驱动配置，响应ajax请求，返回json -->
+    <mvc:annotation-driven />
+
+
+    <!--
+       让用户可以访问静态资源
+           mapping:访问静态资源的地址， 使用通配符 **
+           location：静态资源在你的项目中的目录位置。
+       -->
+    <!--
+    <mvc:resources mapping="/images/**" location="/images/" />
+    <mvc:resources mapping="/html/**" location="/html/" />
+    <mvc:resources mapping="/js/**" location="/js/" />
+    -->
+
+    <!--
+       一行标签设置静态资源
+       把静态资源全部放在一个文件中，比如static文件中。
+    -->
+   <mvc:resources mapping="/static/**" location="/static/"/>
+
+</beans>
