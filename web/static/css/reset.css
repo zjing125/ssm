@@ -15,6 +15,7 @@ li{
 	margin: 0 auto;
 	/*border: 1px solid #f00;*/
 }
+
 .clear-float:after{
 	content: "";
 	display: block;

@@ -13,6 +13,7 @@
 <head>
     <meta charset="utf-8" />
     <title>爱购首页</title>
+    <base href="${pageContext.request.contextPath}/">
     <link rel="stylesheet" href="static/css/reset.css" />
     <link rel="stylesheet" href="static/css/top.css" />
     <link rel="stylesheet" href="static/css/index.css" />
@@ -26,8 +27,9 @@
     <!--头部bar-->
     <div class="top-bar">
         <div class="w1230 top-bar-main">
-            <ul>
-                <li><a href="login.jsp" class="login">登录</a></li>
+            <ul style="width: 300px !important;" id="father">
+                <%--<li>user name</li>--%>
+                <li><a href="login.jsp" class="login" id="login">登录</a></li>
                 <li><a href="register.jsp" class="register">注册</a></li>
                 <li><a href="buyerTrade.jsp"><i class="fa fa-file-text-o"></i>我的订单</a></li>
                 <li><a href="shoppingCart.jsp"><i class="fa fa-shopping-cart"></i>购物车</a></li>
@@ -267,7 +269,7 @@
                 <span class="c-price">￥870.00</span>
             </a></li>
             <li><a href="#">
-                <div class="c-img"><img src="static/imgcloth04.jpg" alt="" width="180px" height="180px"/></div>
+                <div class="c-img"><img src="static/img/cloth04.jpg" alt="" width="180px" height="180px"/></div>
                 <p class="c-title">旗袍外搭外套 开衫 小披肩女夏[逸红颜 楚菲儿]新款配旗袍的外套</p>
                 <span class="c-price">￥180.00</span>
             </a></li>
@@ -446,3 +448,33 @@
 <SCRIPT Language=VBScript><!--
 
 //--></SCRIPT>
+
+<script>
+    function getCookie(cname)
+    {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+    window.onload = function(){
+        var UName = getCookie("username");
+        var Status = getCookie("status");
+        // dis none login li
+        if (Status === "true"){
+            var login = document.getElementById("login");
+            login.style.display = "none";
+            var father = document.getElementById("father");
+            var user_name_li = document.createElement("li");
+            var user_name_a = document.createElement("a")
+            var user_name_li_text = document.createTextNode(UName);
+            user_name_li.appendChild(user_name_a);
+            user_name_a.appendChild(user_name_li_text);
+            father.appendChild(user_name_li);
+        }
+    }
+</script>

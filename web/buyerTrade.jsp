@@ -13,6 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <title>爱购我的订单</title>
+    <base href="${pageContext.request.contextPath}/">
     <link rel="icon" type="image/x-icon" href="static/img/title-icon.jpg"/>
     <link rel="stylesheet" href="static/css/reset.css" />
     <link rel="stylesheet" href="static/css/top.css" />

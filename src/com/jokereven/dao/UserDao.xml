@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jokereven.dao.UserDao">
+
+
+    <insert id="insertUser">
+        insert into s_user(id,username,password,type) values(#{id},#{username},#{password},#{type})
+    </insert>
+
+    <select id="selectUserByUserName" resultType="User">
+        select id,username,password,type from s_user where username=#{username}
+    </select>
+
+</mapper>
