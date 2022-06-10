@@ -40,7 +40,7 @@
                         <li><a href="deliverAddress.jsp">收货地址</a></li>
                         <li><a href="shoppingCart.jsp">购物车</a></li>
                         <li><a href="buyerTrade.jsp">我的订单</a></li>
-                        <li><a href="#">退出</a></li>
+                        <li><a href="/user/logout">退出</a></li>
                     </ul>
                 </div>
             </div>

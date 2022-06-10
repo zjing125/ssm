@@ -27,7 +27,6 @@ public class StudentController {
         mv.setViewName("buyerTrade");
 
         return mv;
-
     }
 
 

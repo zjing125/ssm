@@ -2,6 +2,7 @@ package com.jokereven.controller;
 
 import com.jokereven.entity.User;
 import com.jokereven.service.UserService;
+import com.jokereven.utils.DeleteCookie;
 import com.jokereven.utils.MD5Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,6 +81,16 @@ public class UserController {
         response.addCookie(status);
         response.addCookie(uname);
 
+        mv.setViewName("forward:/index.jsp");
+        return mv;
+    }
+
+    // 退出登录
+    @RequestMapping("/logout")
+    public ModelAndView doLogout(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView mv = new ModelAndView();
+        DeleteCookie.deleteCookie(response, "localhost", "/", "status",  false);
+        DeleteCookie.deleteCookie(response, "localhost", "/", "username",  false);
         mv.setViewName("forward:/index.jsp");
         return mv;
     }
