@@ -4,6 +4,7 @@ import com.jokereven.entity.User;
 import com.jokereven.service.UserService;
 import com.jokereven.utils.DeleteCookie;
 import com.jokereven.utils.MD5Utils;
+import com.jokereven.utils.UUIDUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,67 @@ public class UserController {
 
     @Resource
     private UserService service;
+
+    // 注册
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public ModelAndView doRegister(User user){
+        ModelAndView mv = new ModelAndView();
+
+        String username = user.getUsername();
+
+        String password = user.getPassword();
+
+        String re_password = user.getRePassword();
+
+        // 进行数据校验
+        // 输入用户名
+        if(username==null ||"".equals(username)){
+            mv.addObject("m","请输入用户名");
+            mv.setViewName("forward:/register.jsp");
+            return mv;
+        }
+
+        // 输入密码
+        if(password==null ||"".equals(password)){
+            mv.addObject("m","请输入密码");
+            mv.setViewName("forward:/register.jsp");
+            return mv;
+        }
+
+        // 确认密码
+        if(re_password==null || "".equals(re_password)){
+            mv.addObject("m","请确认密码");
+            mv.setViewName("forward:/register.jsp");
+            return mv;
+        }
+
+        if(!re_password.equals(password)){
+            mv.addObject("m","请输入一样的密码");
+            mv.setViewName("forward:/register.jsp");
+            return mv;
+        }
+
+        User userone=service.selectUserByUserName(username);
+        //判断是否能从数据库中查询到user 对象   如果查询到  则与用户输入的用户名存在是正确的    如果查询结果为null   就证明 用户输入的用户名在数据库不存在
+
+        if (userone != null){
+            mv.addObject("m","用户名已经存在, 不可用2333");
+            mv.setViewName("forward:/register.jsp");
+            return mv;
+        }
+
+        // 向数据库插入数据
+        User u = new User();
+        u.setType(1);
+        u.setId(UUIDUtils.getId());
+        u.setUsername(username);
+        u.setPassword(MD5Utils.stringToMD5(password));
+
+        service.insertUser(u);
+
+        mv.setViewName("forward:/index.jsp");
+        return mv;
+    }
 
     //登录
     @RequestMapping(value = "/login",method = RequestMethod.POST)

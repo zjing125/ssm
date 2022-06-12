@@ -47,10 +47,12 @@
         <div class="reg-div">
             <h3 class="login-title">注册爱购</h3>
             <p class="go-reg">若有账号？<a href="login.jsp">在此登录</a></p>
-            <form action="#" method="post">
-                <p><input type="text" placeholder="请输入注册的账号"/></p>
-                <p><input type="password" placeholder="请输入密码"/></p>
-                <p><input type="password" placeholder="请确认密码"/></p>
+            <form action="/user/register" method="post">
+                <p><font color="red">${m}</font></p>
+
+                <p><input type="text" name="username" placeholder="请输入注册的账号"/></p>
+                <p><input type="password" name="password" placeholder="请输入密码"/></p>
+                <p><input type="password" name="RePassword" placeholder="请确认密码"/></p>
                 <p class="clear-float"><input type="text" placeholder="验证码" class="code"/><img src="static/img/code.jpg" width="110px" height="42px" class="code-img"/></p>
                 <input type="submit" value="同意并注册协议" class="sum-btn" />
                 <p class="pro"><a href="#">《爱购用户协议》</a></p>

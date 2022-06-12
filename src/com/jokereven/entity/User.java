@@ -9,6 +9,7 @@ public class User {
     private String id;
     private String username;
     private String password;
+    private String RePassword;
     private Integer type;
     // 无参构造方法（必须）
 
