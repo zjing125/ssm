@@ -27,7 +27,7 @@
     <!--头部bar-->
     <div class="top-bar">
         <div class="w1230 top-bar-main">
-            <ul style="width: 300px !important;" id="father">
+            <ul style="width: 400px !important;" id="father">
                 <%--<li>user name</li>--%>
                 <li><a href="login.jsp" class="login" id="login">登录</a></li>
                 <li><a href="register.jsp" class="register">注册</a></li>
